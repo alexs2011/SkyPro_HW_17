@@ -15,8 +15,8 @@ db = SQLAlchemy(app)
 
 api = Api(app)
 movie_ns = api.namespace('movies')
-directors_ns = api.namespace('directors')
-genres_ns = api.namespace('genres')
+director_ns = api.namespace('directors')
+genre_ns = api.namespace('genres')
 
 
 @movie_ns.route('/')
@@ -128,7 +128,7 @@ class MovieView(Resource):
         return "", 204
 
 
-@directors_ns.route('/')
+@director_ns.route('/')
 class DirectorsView(Resource):
     def post(self):
         req_json = request.json
@@ -138,7 +138,7 @@ class DirectorsView(Resource):
         return "", 201
 
 
-@directors_ns.route('/<int:director_id>')
+@director_ns.route('/<int:director_id>')
 class DirectorView(Resource):
     def put(self, director_id):
         try:
@@ -179,7 +179,7 @@ class DirectorView(Resource):
         return "", 204
 
 
-@genres_ns.route('/')
+@genre_ns.route('/')
 class GenresView(Resource):
     def post(self):
         req_json = request.json
@@ -189,7 +189,7 @@ class GenresView(Resource):
         return "", 201
 
 
-@genres_ns.route('/<int:genre_id>')
+@genre_ns.route('/<int:genre_id>')
 class GenreView(Resource):
     def put(self, genre_id):
         try:
